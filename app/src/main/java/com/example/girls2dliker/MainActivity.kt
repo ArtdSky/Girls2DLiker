@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.girls2dliker.routing.Girls2DLikerRouter
 import com.example.girls2dliker.routing.Screen
+import com.example.girls2dliker.screens.CheckScreen
+import com.example.girls2dliker.screens.FavoriteScreen
 import com.example.girls2dliker.ui.theme.Girls2DLikerTheme
 import timber.log.Timber
 
@@ -19,10 +21,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Timber.tag("TAG").d("test")
-//            Girls2DLikerTheme {
-//                MainActivityScreen()
-//            }
+            Girls2DLikerTheme {
+                MainActivityScreen()
+            }
         }
     }
 }
@@ -31,8 +32,8 @@ class MainActivity : ComponentActivity() {
 fun MainActivityScreen() {
     Surface {
         when (Girls2DLikerRouter.currentScreen) {
-            is Screen.Check -> TODO(/* Check screen*/)
-            is Screen.Favorite -> TODO(/* Favorite screen*/)
+            is Screen.Check -> CheckScreen()
+            is Screen.Favorite -> FavoriteScreen()
         }
     }
 }
