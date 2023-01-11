@@ -21,18 +21,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Girls2DLikerTheme {
-                MainActivityScreen()
+                MainActivityScreen(viewModel = viewModel)
             }
         }
     }
 }
 
 @Composable
-fun MainActivityScreen() {
+fun MainActivityScreen(viewModel : MainViewModel ) {
     Surface {
         when (Girls2DLikerRouter.currentScreen) {
-            is Screen.Check -> CheckScreen()
-            is Screen.Favorites -> FavoritesScreen()
+            is Screen.Check -> CheckScreen(viewModel)
+            is Screen.Favorites -> FavoritesScreen(viewModel)
         }
     }
 }

@@ -1,25 +1,24 @@
 package com.example.girls2dliker.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.example.girls2dliker.MyApplication
-import com.example.girls2dliker.repository.Repository
+import timber.log.Timber
 
 class MainViewModel(
-    private val repository: Repository,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    // ViewModel logic
-    // ...
+    fun onCreateNewNoteClick() {
+        Timber.tag("MV").d("FAB CLICK")
+    }
 
     // Define ViewModel factory in a companion object
     companion object {
+
 
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
@@ -33,7 +32,6 @@ class MainViewModel(
                 val savedStateHandle = extras.createSavedStateHandle()
 
                 return MainViewModel(
-                    (application as MyApplication).repository,
                     savedStateHandle
                 ) as T
             }
