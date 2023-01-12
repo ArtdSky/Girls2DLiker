@@ -1,4 +1,4 @@
-package com.example.girls2dliker.components
+package com.example.girls2dliker.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -45,7 +45,7 @@ fun AppDrawer(
                 icon = Icons.Filled.Favorite,
                 isSelected = currentScreen == Screen.Favorites,
                 onClick = {
-                    Girls2DLikerRouter.navigateTo(Screen.Check)
+                    Girls2DLikerRouter.navigateTo(Screen.Favorites)
                     closeDrawerAction()
                 }
             )

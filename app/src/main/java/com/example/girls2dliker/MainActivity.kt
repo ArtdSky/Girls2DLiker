@@ -8,8 +8,8 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import com.example.girls2dliker.routing.Girls2DLikerRouter
 import com.example.girls2dliker.routing.Screen
-import com.example.girls2dliker.screens.CheckScreen
-import com.example.girls2dliker.screens.FavoritesScreen
+import com.example.girls2dliker.ui.screens.CheckScreen
+import com.example.girls2dliker.ui.screens.FavoritesScreen
 import com.example.girls2dliker.ui.theme.Girls2DLikerTheme
 import com.example.girls2dliker.viewmodel.MainViewModel
 
