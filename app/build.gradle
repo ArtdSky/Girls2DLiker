@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 android {
@@ -49,6 +50,16 @@ android {
 }
 
 dependencies {
+    //Ktor
+    def ktor_version = "2.2.2"
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation "io.ktor:ktor-client-logging:$ktor_version"
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation "ch.qos.logback:logback-classic:1.2.3"
+    implementation("io.ktor:ktor-server-cors:$ktor_version")
     //Glide
     implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
     // Room
