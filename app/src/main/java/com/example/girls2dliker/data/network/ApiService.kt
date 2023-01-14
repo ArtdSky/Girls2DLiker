@@ -12,7 +12,6 @@ interface ApiService {
 
     suspend fun getRandomImg(): Response
 
-
     companion object {
         fun create(): ApiService {
             return ApiServiceImpl(

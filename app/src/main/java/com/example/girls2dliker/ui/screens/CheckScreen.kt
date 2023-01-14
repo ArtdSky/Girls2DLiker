@@ -12,17 +12,18 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.example.girls2dliker.routing.Screen
 import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.ui.components.GirlsSlider
-import com.example.girls2dliker.ui.components.ScalableImage
 import com.example.girls2dliker.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun CheckScreen(
-    mViewModel: MainViewModel
+    vm: MainViewModel
 ) {
+
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
+    vm.loadList()
     Scaffold(
         topBar = {
 //            TopAppBar(

@@ -50,6 +50,14 @@ android {
 }
 
 dependencies {
+    // Room
+    implementation "androidx.room:room-runtime:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+    // Koin for Android
+    def koin_version= "3.3.2"
+    implementation "io.insert-koin:koin-androidx-compose:3.4.1"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
     //Ktor
     def ktor_version = "2.2.2"
     implementation("io.ktor:ktor-client-android:$ktor_version")
@@ -62,10 +70,6 @@ dependencies {
     implementation("io.ktor:ktor-server-cors:$ktor_version")
     //Glide
     implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
-    // Room
-    implementation "androidx.room:room-runtime:2.4.3"
-    kapt "androidx.room:room-compiler:2.4.3"
-
     // ViewModel utilities for Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")

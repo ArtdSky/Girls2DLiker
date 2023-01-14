@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun FavoritesScreen(
-    mViewModel : MainViewModel
 ) {
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
