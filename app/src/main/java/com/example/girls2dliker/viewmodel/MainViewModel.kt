@@ -1,5 +1,7 @@
 package com.example.girls2dliker.viewmodel
 
+import android.util.ArraySet
+import android.util.Log
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,14 +22,13 @@ class MainViewModel(
     }
 
     data class ViewState(
-        val imageList: List<Images>,
-        val itemInfo: Images? = null
+        val imageList: List<Images> = emptyList(),
+        val itemInfo: Images? = null,
+        val favoriteList: MutableSet<Images> = ArraySet()
     )
 
     private val _viewState = MutableStateFlow(
-        ViewState(
-            imageList = emptyList()
-        )
+        ViewState()
     )
     val viewState = _viewState.asStateFlow()
 
@@ -37,6 +38,11 @@ class MainViewModel(
                 itemInfo = item
             )
         }
+    }
+
+    fun addToFavorite(item : Images){
+        _viewState.value.favoriteList.add(item)
+        Log.d("TAG-MVM", _viewState.value.favoriteList.toString() )
     }
 
     private fun loadList() {

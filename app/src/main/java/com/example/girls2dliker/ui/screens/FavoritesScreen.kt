@@ -6,40 +6,46 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import com.example.girls2dliker.data.network.dto.Images
-import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.routing.Screen
-import com.example.girls2dliker.ui.components.ScalableImage
+import com.example.girls2dliker.ui.components.AppDrawer
+import com.example.girls2dliker.ui.components.ItemSlider
+import com.example.girls2dliker.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun FavoritesScreen(
+    vm: MainViewModel = koinViewModel()
 ) {
+    val state by vm.viewState.collectAsState()
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
-//            TopAppBar(
-//                title = {
-//                    Text(
-//                        text = "girls2dliker",
-//                        color = MaterialTheme.colors.onPrimary
-//                    )
-//                },
-//                navigationIcon = {
-//                    IconButton(onClick = {
-//                        coroutineScope.launch { scaffoldState.drawerState.open() }
-//                    }) {
-//                        Icon(
-//                            imageVector = Icons.Filled.List,
-//                            contentDescription = "Drawer Button"
-//                        )
-//                    }
-//                }
-//            )
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "girls2dliker",
+                        color = MaterialTheme.colors.onPrimary
+                    )
+                },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        coroutineScope.launch { scaffoldState.drawerState.open() }
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.List,
+                            contentDescription = "Drawer Button"
+                        )
+                    }
+                }
+            )
         },
         scaffoldState = scaffoldState,
         drawerContent = {
@@ -58,13 +64,7 @@ fun FavoritesScreen(
                     .fillMaxSize()
                     .padding(it)
             ) {
-//                ScalableImage(
-//                    Images(
-//                        url = "null",
-//                        dominant_color = "null"
-//                    )
-//                )
-                Text("zaebal")
+                ItemSlider(imageList = state.favoriteList.toList())
             }
         },
         bottomBar = {},
