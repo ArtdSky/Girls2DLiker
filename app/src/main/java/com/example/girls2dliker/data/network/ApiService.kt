@@ -17,7 +17,7 @@ interface ApiService {
             return ApiServiceImpl(
                 client = HttpClient(Android) {
                     install(Logging) {
-                        level = LogLevel.ALL
+                        level = LogLevel.BODY
                     }
                     install(ContentNegotiation) {
                         json(Json {

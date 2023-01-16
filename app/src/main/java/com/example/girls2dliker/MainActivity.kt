@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
 fun MainActivityScreen() {
     Surface {
         when (Girls2DLikerRouter.currentScreen) {
-            is Screen.Check -> CheckScreen(vm = koinViewModel())
+            is Screen.Check -> CheckScreen()
             is Screen.Favorites -> FavoritesScreen()
         }
     }

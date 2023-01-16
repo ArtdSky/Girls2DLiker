@@ -6,16 +6,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import com.example.girls2dliker.data.network.dto.Images
 import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.routing.Screen
-import com.example.girls2dliker.ui.components.GirlsSlider
 import com.example.girls2dliker.ui.components.ScalableImage
-import com.example.girls2dliker.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
 @Composable
@@ -61,7 +58,13 @@ fun FavoritesScreen(
                     .fillMaxSize()
                     .padding(it)
             ) {
-                ScalableImage("https://cdn.waifu.im/7038.jpg")
+//                ScalableImage(
+//                    Images(
+//                        url = "null",
+//                        dominant_color = "null"
+//                    )
+//                )
+                Text("zaebal")
             }
         },
         bottomBar = {},

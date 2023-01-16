@@ -10,7 +10,7 @@ class ApiServiceImpl(
 ) : ApiService {
 
     override suspend fun getRandomImg(): Response {
-        return client.get { url(HttpRoutes.RANDOM_IMAGE) }.body()
+        return client.get { url(HttpRoutes.TEST) }.body()
     }
 
 

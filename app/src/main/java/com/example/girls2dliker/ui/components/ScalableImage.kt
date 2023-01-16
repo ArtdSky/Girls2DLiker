@@ -1,5 +1,6 @@
 package com.example.girls2dliker.ui.components
 
+import android.graphics.Color.parseColor
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,30 +15,38 @@ import androidx.compose.ui.layout.ContentScale
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.girls2dliker.R
+import com.example.girls2dliker.data.network.dto.Images
+import com.example.girls2dliker.viewmodel.MainViewModel
+import org.koin.androidx.compose.koinViewModel
+import timber.log.Timber
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun ScalableImage( imageUrl : String ) {
+fun ScalableImage(
+    item : Images,
+    vm: MainViewModel = koinViewModel()
+) {
     var scale by remember { mutableStateOf(1f) }
-
     val state = rememberTransformableState { zoomChange, _, _ ->
         scale *= zoomChange
     }
-    Log.d("SI", imageUrl)
+
+    vm.updateBgColor( Color(parseColor( item.dominant_color ) ) )
+
+    Log.d("ScalableImage", item.toString())
     GlideImage(
-        model = imageUrl,
+        model = item.url,
         contentDescription = "test",
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .clickable(
-                onClick = { Log.d("CH", "Clicked image") }
+                onClick = { Timber.tag("ScalableImage").d("Clicked image") }
             )
             .graphicsLayer(
                 scaleX = scale,
                 scaleY = scale,
             )
             .transformable(state = state)
-            .background(Color.Blue)
             .fillMaxSize()
     ){
         it

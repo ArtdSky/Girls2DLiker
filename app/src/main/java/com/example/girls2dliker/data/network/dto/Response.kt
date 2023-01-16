@@ -4,14 +4,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Response(
-	var images : List<Images>
+	val images : List<Images>
 
 )
 
 @Serializable
 data class Images(
-	var url  : String
-
+	val url  : String,
+	val dominant_color : String
 )
 
 

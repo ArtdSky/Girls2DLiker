@@ -11,19 +11,21 @@ import androidx.compose.ui.Modifier
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.example.girls2dliker.routing.Screen
 import com.example.girls2dliker.ui.components.AppDrawer
-import com.example.girls2dliker.ui.components.GirlsSlider
+import com.example.girls2dliker.ui.components.Slider
 import com.example.girls2dliker.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun CheckScreen(
-    vm: MainViewModel
+    vm: MainViewModel  = koinViewModel()
 ) {
 
+    val state by vm.viewState.collectAsState()
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
-    vm.loadList()
+
     Scaffold(
         topBar = {
 //            TopAppBar(
@@ -62,7 +64,7 @@ fun CheckScreen(
                     .fillMaxSize()
                     .padding(it)
             ) {
-                GirlsSlider()
+                Slider(imageList = state.imageList)
 
             }
 
