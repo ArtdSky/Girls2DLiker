@@ -19,7 +19,7 @@ import org.koin.androidx.compose.koinViewModel
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun CheckScreen(
-    vm: MainViewModel  = koinViewModel()
+    vm: MainViewModel = koinViewModel()
 ) {
 
     val state by vm.viewState.collectAsState()
@@ -74,7 +74,7 @@ fun CheckScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    Log.d("VM", "FAB CLICK2")
+                    state.itemInfo?.let { Log.d("TAG-CheckScreen", it.url) }
                 },
                 contentColor = MaterialTheme.colors.background,
                 content = {

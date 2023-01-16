@@ -31,16 +31,17 @@ fun ScalableImage(
         scale *= zoomChange
     }
 
-    vm.updateBgColor( Color(parseColor( item.dominant_color ) ) )
+    vm.updateItemInfo( item )
 
-    Log.d("ScalableImage", item.toString())
     GlideImage(
         model = item.url,
         contentDescription = "test",
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .clickable(
-                onClick = { Timber.tag("ScalableImage").d("Clicked image") }
+                onClick = {
+                    Log.d("TAG-ScalableImage", "Clicked image")
+                }
             )
             .graphicsLayer(
                 scaleX = scale,
