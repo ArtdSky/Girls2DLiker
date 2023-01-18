@@ -64,7 +64,8 @@ fun FavoritesScreen(
                     .fillMaxSize()
                     .padding(it)
             ) {
-                ItemSlider(imageList = state.favoriteList.toList())
+//                ItemSlider(imageList = state.favoriteList.toList() )
+                ItemSlider( screen="favorites" )
             }
         },
         bottomBar = {},
@@ -72,7 +73,8 @@ fun FavoritesScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    Log.d("VM", "FAB CLICK2")
+                    state.itemInfo?.let { vm.deleteFromFavorite(it) }
+
                 },
                 contentColor = MaterialTheme.colors.background,
                 content = {
