@@ -1,13 +1,11 @@
 package com.example.girls2dliker.viewmodel
 
-import android.util.ArraySet
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.girls2dliker.data.network.ApiService
 import com.example.girls2dliker.data.network.dto.Images
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -29,7 +27,6 @@ class MainViewModel(
         ViewState()
     )
     val viewState = _viewState.asStateFlow()
-
 
 
     fun updateItemInfo(item: Images) {

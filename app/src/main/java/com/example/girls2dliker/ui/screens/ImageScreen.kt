@@ -1,9 +1,11 @@
-package com.example.girls2dliker.ui.components
+package com.example.girls2dliker.ui.screens
 
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -12,31 +14,41 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.girls2dliker.R
 import com.example.girls2dliker.data.network.dto.Images
+import com.example.girls2dliker.routing.Girls2DLikerRouter
+import com.example.girls2dliker.routing.Screen
 import com.example.girls2dliker.viewmodel.MainViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun ScalableImage(
-    item: Images,
-    modifier: Modifier = Modifier,
+fun ImageScreen(
+    orientation : String,
     vm: MainViewModel = koinViewModel()
 ) {
+    Log.d("TAG-IMAGE SCREEN", orientation)
+    val state by vm.viewState.collectAsState()
     var scale by remember { mutableStateOf(1f) }
-    val state = rememberTransformableState { zoomChange, _, _ ->
+    val stateTransform = rememberTransformableState { zoomChange, _, _ ->
         scale *= zoomChange
     }
+    var item : String? = null
+    state.itemInfo?.let {
+        item = it.url
+    }
 
+    BackHandler {
+        Girls2DLikerRouter.navigateTo(Screen.Check)
+    }
     GlideImage(
-        model = item.url,
-        contentDescription = "2D Image",
+        model = item,
+        contentDescription = "test",
         contentScale = ContentScale.FillHeight,
-        modifier = modifier
+        modifier = Modifier
             .graphicsLayer(
                 scaleX = scale,
                 scaleY = scale,
             )
-            .transformable(state = state)
+            .transformable(state = stateTransform)
             .fillMaxSize()
     ) {
         it

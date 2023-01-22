@@ -59,7 +59,7 @@ fun ItemSlider(
     Box(Modifier.pullRefresh(refreshState)) {
         if (!refreshing) {
             VerticalPager(count = items.size, state = pagerState) { page ->
-                ScalableImage(items[page])
+                ScalableImage(items[page], modifier = Modifier)
             }
         }
         PullRefreshIndicator(refreshing, refreshState, Modifier.align(Alignment.TopCenter))

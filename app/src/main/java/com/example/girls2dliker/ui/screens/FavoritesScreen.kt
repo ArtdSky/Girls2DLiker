@@ -12,8 +12,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import com.example.girls2dliker.routing.Screen
 import com.example.girls2dliker.ui.components.AppDrawer
+import com.example.girls2dliker.ui.components.ItemGrid
 import com.example.girls2dliker.ui.components.ItemSlider
 import com.example.girls2dliker.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
@@ -21,8 +23,10 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun FavoritesScreen(
+    orientation: String,
     vm: MainViewModel = koinViewModel()
 ) {
+
     val state by vm.viewState.collectAsState()
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
@@ -64,8 +68,10 @@ fun FavoritesScreen(
                     .fillMaxSize()
                     .padding(it)
             ) {
-//                ItemSlider(imageList = state.favoriteList.toList() )
-                ItemSlider( screen="favorites" )
+                when (orientation) {
+                    "portrait" -> ItemSlider(screen = "favorites")
+                    "landscape" -> ItemGrid(screen = "favorites")
+                }
             }
         },
         bottomBar = {},

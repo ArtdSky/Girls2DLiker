@@ -1,6 +1,7 @@
 package com.example.girls2dliker.routing
 
-sealed class Screen{
+sealed class Screen(){
     object Check : Screen()
     object Favorites : Screen()
+    object Image : Screen()
 }
