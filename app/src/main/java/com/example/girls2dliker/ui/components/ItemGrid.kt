@@ -10,9 +10,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.girls2dliker.data.network.dto.Images
-import com.example.girls2dliker.routing.Girls2DLikerRouter
-import com.example.girls2dliker.routing.Screen
 import com.example.girls2dliker.viewmodel.MainViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -20,6 +19,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ItemGrid(
     screen: String,
+    navController : NavHostController,
     vm: MainViewModel = koinViewModel()
 ) {
     val state by vm.viewState.collectAsState()
@@ -47,7 +47,7 @@ fun ItemGrid(
                     .clickable {
                         selectedItem = index
                         vm.updateItemInfo(items[index])
-                        Girls2DLikerRouter.navigateTo(Screen.Image)
+                        navController.navigate("image")
                         Log.d("TAG-GRID", selectedItem.toString())
                     }
                     .size(200.dp)

@@ -1,6 +1,5 @@
 package com.example.girls2dliker.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.girls2dliker.data.network.ApiService
@@ -14,7 +13,7 @@ class MainViewModel(
     private val service: ApiService
 ) : ViewModel() {
     init {
-        loadList()
+        loadData()
     }
 
     data class ViewState(
@@ -28,6 +27,12 @@ class MainViewModel(
     )
     val viewState = _viewState.asStateFlow()
 
+    private val _containInFavorites = MutableStateFlow(false)
+    val containInFavorites = _containInFavorites.asStateFlow()
+
+    fun checkInFavorites(value : Boolean){
+        _containInFavorites.value = value
+    }
 
     fun updateItemInfo(item: Images) {
         _viewState.update { currentState ->
@@ -55,10 +60,9 @@ class MainViewModel(
                 favoriteList = oldList
             )
         }
-        Log.d("TAG-MVM", _viewState.value.favoriteList.toString())
     }
 
-    fun loadList() {
+    fun loadData() {
         viewModelScope.launch {
             val res = service.getRandomImg()
             _viewState.update { currentState: ViewState ->

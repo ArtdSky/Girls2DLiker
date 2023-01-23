@@ -12,8 +12,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
-import com.example.girls2dliker.routing.Screen
+import androidx.navigation.NavHostController
+import com.example.girls2dliker.routing.NavRoute
 import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.ui.components.ItemGrid
 import com.example.girls2dliker.ui.components.ItemSlider
@@ -24,7 +24,8 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun FavoritesScreen(
     orientation: String,
-    vm: MainViewModel = koinViewModel()
+    navController: NavHostController,
+    vm: MainViewModel
 ) {
 
     val state by vm.viewState.collectAsState()
@@ -35,7 +36,7 @@ fun FavoritesScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "girls2dliker",
+                        text = "Favorites",
                         color = MaterialTheme.colors.onPrimary
                     )
                 },
@@ -54,7 +55,8 @@ fun FavoritesScreen(
         scaffoldState = scaffoldState,
         drawerContent = {
             AppDrawer(
-                currentScreen = Screen.Favorites,
+                currentScreen = NavRoute.Favorites,
+                navController = navController,
                 closeDrawerAction = {
                     coroutineScope.launch {
                         scaffoldState.drawerState.close()
@@ -69,8 +71,8 @@ fun FavoritesScreen(
                     .padding(it)
             ) {
                 when (orientation) {
-                    "portrait" -> ItemSlider(screen = "favorites")
-                    "landscape" -> ItemGrid(screen = "favorites")
+                    "portrait" -> ItemSlider(screen = "favorites", data = state.favoriteList, vm = vm)
+                    "landscape" -> ItemGrid(screen = "favorites", navController = navController )
                 }
             }
         },

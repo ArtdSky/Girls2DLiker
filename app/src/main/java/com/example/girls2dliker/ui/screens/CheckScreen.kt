@@ -1,5 +1,6 @@
 package com.example.girls2dliker.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -10,8 +11,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.example.girls2dliker.routing.Screen
+import com.example.girls2dliker.routing.NavRoute
 import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.ui.components.ItemGrid
 import com.example.girls2dliker.ui.components.ItemSlider
@@ -20,28 +22,30 @@ import com.example.girls2dliker.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun CheckScreen(
     orientation: String,
-    vm: MainViewModel = koinViewModel()
+    navController: NavHostController,
+    vm: MainViewModel
 ) {
     val state by vm.viewState.collectAsState()
+    val liked by vm.containInFavorites.collectAsState()
+
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 
-    val liked = remember { mutableStateOf(false) }
-
-    state.itemInfo?.let {
-        liked.value = state.favoriteList.contains(it)
-    }
+//    val liked = remember { mutableStateOf(false) }
+//
+//    state.itemInfo?.let {
+//        liked.value = state.favoriteList.contains(it)
+//    }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text = "girls2dliker",
+                        text = "Check",
                         color = MaterialTheme.colors.onPrimary
                     )
                 },
@@ -60,7 +64,8 @@ fun CheckScreen(
         scaffoldState = scaffoldState,
         drawerContent = {
             AppDrawer(
-                currentScreen = Screen.Check,
+                currentScreen = NavRoute.Check,
+                navController = navController,
                 closeDrawerAction = {
                     coroutineScope.launch {
                         scaffoldState.drawerState.close()
@@ -75,8 +80,8 @@ fun CheckScreen(
                     .padding(it)
             ) {
                 when (orientation) {
-                    "portrait" -> ItemSlider(screen = "check")
-                    "landscape" -> ItemGrid(screen = "check")
+                    "portrait" -> ItemSlider(screen = "check", data = state.imageList, vm = vm)
+                    "landscape" -> ItemGrid(screen = "check", navController = navController )
                 }
 
             }
@@ -87,19 +92,21 @@ fun CheckScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
+                    Log.d("TAG-CHECKSCREEN", state.itemInfo.toString())
                     state.itemInfo?.let {
                         if (!state.favoriteList.contains(it)) {
                             vm.addToFavorite(it)
+                            vm.checkInFavorites(true)
                         }
                     }
                 },
-                backgroundColor = if (liked.value) Purple200 else Green,
+                backgroundColor = if (liked) Purple200 else Green,
                 contentColor = MaterialTheme.colors.background,
                 content = {
                     Icon(
                         imageVector = Icons.Filled.Favorite,
-                        contentDescription = "Add Note Button",
-                        tint = if (liked.value) Red else Purple200,
+                        contentDescription = "Add Button",
+                        tint = if (liked) Red else Purple200,
                     )
                 }
             )

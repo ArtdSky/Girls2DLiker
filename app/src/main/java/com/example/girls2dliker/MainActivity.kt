@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
-import com.example.girls2dliker.routing.Girls2DLikerRouter
-import com.example.girls2dliker.routing.Screen
-import com.example.girls2dliker.ui.screens.CheckScreen
-import com.example.girls2dliker.ui.screens.FavoritesScreen
-import com.example.girls2dliker.ui.screens.ImageScreen
+import com.example.girls2dliker.routing.NavState
 import com.example.girls2dliker.ui.theme.Girls2DLikerTheme
+import com.example.girls2dliker.viewmodel.MainViewModel
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -41,10 +39,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainActivityScreen(orientation: String) {
     Surface {
-        when (Girls2DLikerRouter.currentScreen) {
-            is Screen.Check -> CheckScreen(orientation = orientation)
-            is Screen.Favorites -> FavoritesScreen(orientation = orientation)
-            is Screen.Image -> ImageScreen(orientation = orientation)
-        }
+//        when (Girls2DLikerRouter.currentScreen) {
+//            is Screen.Check -> CheckScreen(orientation = orientation)
+//            is Screen.Favorites -> FavoritesScreen(orientation = orientation)
+//            is Screen.Image -> ImageScreen(orientation = orientation)
+//        }
+        NavState(orientation)
+
     }
 }

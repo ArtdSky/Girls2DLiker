@@ -16,12 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.example.girls2dliker.routing.Girls2DLikerRouter
-import com.example.girls2dliker.routing.Screen
+import androidx.navigation.NavHostController
+import com.example.girls2dliker.routing.NavRoute
 
 @Composable
 fun AppDrawer(
-    currentScreen: Screen,
+    currentScreen: NavRoute,
+    navController: NavHostController,
     closeDrawerAction: () -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
@@ -31,9 +32,9 @@ fun AppDrawer(
         ) {
             ScreenNavigationButton(
                 icon = Icons.Filled.Home,
-                isSelected = currentScreen == Screen.Check,
+                isSelected = currentScreen == NavRoute.Check,
                 onClick = {
-                    Girls2DLikerRouter.navigateTo(Screen.Check)
+                    navController.navigate("check")
                     closeDrawerAction()
                 }
             )
@@ -43,9 +44,9 @@ fun AppDrawer(
         ) {
             ScreenNavigationButton(
                 icon = Icons.Filled.Favorite,
-                isSelected = currentScreen == Screen.Favorites,
+                isSelected = currentScreen == NavRoute.Favorites,
                 onClick = {
-                    Girls2DLikerRouter.navigateTo(Screen.Favorites)
+                    navController.navigate("favorites")
                     closeDrawerAction()
                 }
             )

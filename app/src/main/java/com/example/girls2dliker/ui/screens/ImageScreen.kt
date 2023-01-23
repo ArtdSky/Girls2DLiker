@@ -5,7 +5,6 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -13,9 +12,6 @@ import androidx.compose.ui.layout.ContentScale
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.girls2dliker.R
-import com.example.girls2dliker.data.network.dto.Images
-import com.example.girls2dliker.routing.Girls2DLikerRouter
-import com.example.girls2dliker.routing.Screen
 import com.example.girls2dliker.viewmodel.MainViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -36,9 +32,9 @@ fun ImageScreen(
         item = it.url
     }
 
-    BackHandler {
-        Girls2DLikerRouter.navigateTo(Screen.Check)
-    }
+//    BackHandler {
+//        Girls2DLikerRouter.navigateTo(Screen.Check)
+//    }
     GlideImage(
         model = item,
         contentDescription = "test",
