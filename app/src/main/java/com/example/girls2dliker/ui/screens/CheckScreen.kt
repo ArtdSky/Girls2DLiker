@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.example.girls2dliker.routing.AppDistination
 import com.example.girls2dliker.routing.NavRoute
 import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.ui.components.ItemGrid
@@ -26,6 +27,7 @@ import org.koin.androidx.compose.koinViewModel
 fun CheckScreen(
     orientation: String,
     navController: NavHostController,
+    currentScreen : AppDistination,
     vm: MainViewModel
 ) {
     val state by vm.viewState.collectAsState()
@@ -33,12 +35,6 @@ fun CheckScreen(
 
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
-
-//    val liked = remember { mutableStateOf(false) }
-//
-//    state.itemInfo?.let {
-//        liked.value = state.favoriteList.contains(it)
-//    }
 
     Scaffold(
         topBar = {
@@ -64,7 +60,7 @@ fun CheckScreen(
         scaffoldState = scaffoldState,
         drawerContent = {
             AppDrawer(
-                currentScreen = NavRoute.Check,
+                currentScreen = currentScreen,
                 navController = navController,
                 closeDrawerAction = {
                     coroutineScope.launch {
@@ -81,7 +77,7 @@ fun CheckScreen(
             ) {
                 when (orientation) {
                     "portrait" -> ItemSlider(screen = "check", data = state.imageList, vm = vm)
-                    "landscape" -> ItemGrid(screen = "check", navController = navController )
+                    "landscape" -> ItemGrid(screen = "check", navController = navController, vm = vm )
                 }
 
             }

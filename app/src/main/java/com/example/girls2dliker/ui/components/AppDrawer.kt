@@ -17,11 +17,11 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.girls2dliker.routing.NavRoute
+import com.example.girls2dliker.routing.*
 
 @Composable
 fun AppDrawer(
-    currentScreen: NavRoute,
+    currentScreen : AppDistination,
     navController: NavHostController,
     closeDrawerAction: () -> Unit
 ) {
@@ -32,9 +32,9 @@ fun AppDrawer(
         ) {
             ScreenNavigationButton(
                 icon = Icons.Filled.Home,
-                isSelected = currentScreen == NavRoute.Check,
+                isSelected = currentScreen == Check,
                 onClick = {
-                    navController.navigate("check")
+                    navController.navigateSingleTopTo(Check.route)
                     closeDrawerAction()
                 }
             )
@@ -44,9 +44,9 @@ fun AppDrawer(
         ) {
             ScreenNavigationButton(
                 icon = Icons.Filled.Favorite,
-                isSelected = currentScreen == NavRoute.Favorites,
+                isSelected = currentScreen == Favorites,
                 onClick = {
-                    navController.navigate("favorites")
+                    navController.navigateSingleTopTo(Favorites.route)
                     closeDrawerAction()
                 }
             )

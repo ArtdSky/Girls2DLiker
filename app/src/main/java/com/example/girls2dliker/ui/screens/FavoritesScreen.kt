@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import com.example.girls2dliker.routing.AppDistination
 import com.example.girls2dliker.routing.NavRoute
 import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.ui.components.ItemGrid
@@ -25,6 +26,7 @@ import org.koin.androidx.compose.koinViewModel
 fun FavoritesScreen(
     orientation: String,
     navController: NavHostController,
+    currentScreen : AppDistination,
     vm: MainViewModel
 ) {
 
@@ -55,7 +57,7 @@ fun FavoritesScreen(
         scaffoldState = scaffoldState,
         drawerContent = {
             AppDrawer(
-                currentScreen = NavRoute.Favorites,
+                currentScreen = currentScreen,
                 navController = navController,
                 closeDrawerAction = {
                     coroutineScope.launch {
@@ -72,7 +74,7 @@ fun FavoritesScreen(
             ) {
                 when (orientation) {
                     "portrait" -> ItemSlider(screen = "favorites", data = state.favoriteList, vm = vm)
-                    "landscape" -> ItemGrid(screen = "favorites", navController = navController )
+                    "landscape" -> ItemGrid(screen = "favorites", navController = navController, vm = vm )
                 }
             }
         },
