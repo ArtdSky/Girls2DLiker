@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.girls2dliker.data.network.dto.Images
+import com.example.girls2dliker.routing.NavRoute
 import com.example.girls2dliker.viewmodel.MainViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -47,7 +48,7 @@ fun ItemGrid(
                     .clickable {
                         selectedItem = index
                         vm.updateItemInfo(items[index])
-                        navController.navigate("image")
+                        navController.navigate(NavRoute.Image.route )
                         Log.d("TAG-GRID", selectedItem.toString())
                     }
                     .size(200.dp)
