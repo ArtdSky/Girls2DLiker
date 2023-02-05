@@ -30,7 +30,7 @@ class MainViewModel(
     private val _containInFavorites = MutableStateFlow(false)
     val containInFavorites = _containInFavorites.asStateFlow()
 
-    fun checkInFavorites(value : Boolean){
+    fun checkInFavorites(value: Boolean) {
         _containInFavorites.value = value
     }
 

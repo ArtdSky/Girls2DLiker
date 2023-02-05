@@ -7,27 +7,27 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.List
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.navigation.NavHostController
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.example.girls2dliker.routing.AppDistination
-import com.example.girls2dliker.routing.NavRoute
 import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.ui.components.ItemGrid
 import com.example.girls2dliker.ui.components.ItemSlider
 import com.example.girls2dliker.ui.theme.Purple200
 import com.example.girls2dliker.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CheckScreen(
     orientation: String,
     navController: NavHostController,
-    currentScreen : AppDistination,
+    currentScreen: AppDistination,
     vm: MainViewModel
 ) {
     val state by vm.viewState.collectAsState()
@@ -77,7 +77,11 @@ fun CheckScreen(
             ) {
                 when (orientation) {
                     "portrait" -> ItemSlider(screen = "check", data = state.imageList, vm = vm)
-                    "landscape" -> ItemGrid(screen = "check", navController = navController, vm = vm )
+                    "landscape" -> ItemGrid(
+                        screen = "check",
+                        navController = navController,
+                        vm = vm
+                    )
                 }
 
             }

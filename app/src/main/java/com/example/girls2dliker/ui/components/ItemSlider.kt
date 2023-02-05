@@ -26,12 +26,11 @@ import timber.log.Timber
 @SuppressLint("RememberReturnType", "SuspiciousIndentation", "UnrememberedMutableState")
 @Composable
 fun ItemSlider(
-    data : List<Images>,
+    data: List<Images>,
     screen: String,
     vm: MainViewModel
 ) {
     val state by vm.viewState.collectAsState()
-//    val items = data
     var items: List<Images> = emptyList()
 
     when (screen) {
@@ -42,15 +41,15 @@ fun ItemSlider(
     val pagerState = rememberPagerState(0)
 
 
-
     val refreshScope = rememberCoroutineScope()
     var refreshing by remember { mutableStateOf(false) }
     fun refresh() = refreshScope.launch {
         refreshing = true
         vm.loadData()
-        vm.checkInFavorites( false )
+        vm.checkInFavorites(false)
         refreshing = false
     }
+
     val refreshState = rememberPullRefreshState(refreshing = refreshing, onRefresh = ::refresh)
 
     LaunchedEffect("$pagerState") {
@@ -58,9 +57,8 @@ fun ItemSlider(
             if (items.isNotEmpty()) {
                 vm.updateItemInfo(items[page])
 
-                vm.checkInFavorites( state.favoriteList.contains(items[page]) )
+                vm.checkInFavorites(state.favoriteList.contains(items[page]))
             }
-            Log.d("TAG-ItemSliderss", data.toString())
 
         }
     }

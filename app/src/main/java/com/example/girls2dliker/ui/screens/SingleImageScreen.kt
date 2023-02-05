@@ -12,30 +12,19 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.girls2dliker.R
 import com.example.girls2dliker.viewmodel.MainViewModel
-import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun SingleImageScreen(
-    orientation : String,
-//    urlTypeArg: String?,
+    orientation: String,
     vm: MainViewModel
 ) {
-//    urlTypeArg?.let { Log.d("TAG-IMAGE SCREEN(accountType)", it) }
     val state by vm.viewState.collectAsState()
     var scale by remember { mutableStateOf(1f) }
     val stateTransform = rememberTransformableState { zoomChange, _, _ ->
         scale *= zoomChange
     }
-//
-//    var item : String? = null
-//    state.itemInfo?.let {
-//        item = it.url
-//    }
 
-//    BackHandler {
-//        Girls2DLikerRouter.navigateTo(Screen.Check)
-//    }
     Log.d("TAG-SingleImageScreen", state.itemInfo?.url.toString())
     state.itemInfo?.let { images ->
         GlideImage(

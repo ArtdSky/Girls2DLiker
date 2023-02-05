@@ -1,6 +1,5 @@
 package com.example.girls2dliker.ui.screens
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -14,19 +13,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.girls2dliker.routing.AppDistination
-import com.example.girls2dliker.routing.NavRoute
 import com.example.girls2dliker.ui.components.AppDrawer
 import com.example.girls2dliker.ui.components.ItemGrid
 import com.example.girls2dliker.ui.components.ItemSlider
 import com.example.girls2dliker.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun FavoritesScreen(
     orientation: String,
     navController: NavHostController,
-    currentScreen : AppDistination,
+    currentScreen: AppDistination,
     vm: MainViewModel
 ) {
 
@@ -73,8 +70,16 @@ fun FavoritesScreen(
                     .padding(it)
             ) {
                 when (orientation) {
-                    "portrait" -> ItemSlider(screen = "favorites", data = state.favoriteList, vm = vm)
-                    "landscape" -> ItemGrid(screen = "favorites", navController = navController, vm = vm )
+                    "portrait" -> ItemSlider(
+                        screen = "favorites",
+                        data = state.favoriteList,
+                        vm = vm
+                    )
+                    "landscape" -> ItemGrid(
+                        screen = "favorites",
+                        navController = navController,
+                        vm = vm
+                    )
                 }
             }
         },

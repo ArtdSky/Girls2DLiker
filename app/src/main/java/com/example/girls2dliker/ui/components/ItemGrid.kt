@@ -52,7 +52,6 @@ fun ItemGrid(
                         selectedItem = index
                         vm.updateItemInfo(items[index])
                         navController.navigateSingleTopTo( Image.route )
-                        Log.d("TAG-GRID", selectedItem.toString())
                     }
                     .size(200.dp)
             )

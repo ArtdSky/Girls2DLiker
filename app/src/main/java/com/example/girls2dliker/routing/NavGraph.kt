@@ -46,13 +46,6 @@ fun NavGraph(
                 vm = vm
             )
         }
-//        composable(
-//            route = SingleImage.routeWithArgs,
-//            arguments = SingleImage.arguments
-//        ) { navBackStackEntry ->
-//            val urlTypeArg = navBackStackEntry.arguments?.getString(SingleImage.urlTypeArg)
-//            SingleImageScreen(orientation = orientation, urlTypeArg = urlTypeArg)
-//        }
     }
 }
 

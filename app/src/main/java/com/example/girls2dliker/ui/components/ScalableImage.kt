@@ -1,6 +1,5 @@
 package com.example.girls2dliker.ui.components
 
-import android.util.Log
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,7 +19,6 @@ import org.koin.androidx.compose.koinViewModel
 fun ScalableImage(
     item: Images,
     modifier: Modifier = Modifier,
-    vm: MainViewModel = koinViewModel()
 ) {
     var scale by remember { mutableStateOf(1f) }
     val state = rememberTransformableState { zoomChange, _, _ ->

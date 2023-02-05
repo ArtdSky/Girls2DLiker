@@ -17,11 +17,14 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.girls2dliker.routing.*
+import com.example.girls2dliker.routing.AppDistination
+import com.example.girls2dliker.routing.Check
+import com.example.girls2dliker.routing.Favorites
+import com.example.girls2dliker.routing.navigateSingleTopTo
 
 @Composable
 fun AppDrawer(
-    currentScreen : AppDistination,
+    currentScreen: AppDistination,
     navController: NavHostController,
     closeDrawerAction: () -> Unit
 ) {

@@ -7,7 +7,6 @@ sealed class NavRoute(val route: String) {
     object Favorites: NavRoute("favorites")
 
     object Image : NavRoute("image"){
-        val url = "url"
     }
 
 }

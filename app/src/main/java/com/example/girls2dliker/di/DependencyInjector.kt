@@ -10,13 +10,13 @@ import org.koin.dsl.module
 
 val DependencyInjector = module {
 
-    single<HttpClient> { HttpClient( ) }
+    single<HttpClient> { HttpClient() }
 
-    single<ApiService> { ApiServiceImpl( client = get() ) }
+    single<ApiService> { ApiServiceImpl(client = get()) }
 
-    viewModel { MainViewModel( get() )  }
+    viewModel { MainViewModel(get()) }
 
-    factory{ ApiService.create() }
+    factory { ApiService.create() }
 
 
 }
