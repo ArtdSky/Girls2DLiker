@@ -28,7 +28,7 @@ fun Girls2DLikerTheme(
 ) {
     val isDarkThemeEnabled = isSystemInDarkTheme() || Girls2DLikerThemeSettings.isDarkThemeEnabled
 
-    val colors = if (isDarkThemeEnabled) DarkColorPalette else  LightColorPalette
+    val colors = if (isDarkThemeEnabled) DarkColorPalette else LightColorPalette
 
     MaterialTheme(
         colors = colors,
