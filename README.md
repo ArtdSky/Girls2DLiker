@@ -15,9 +15,9 @@ The layout of the screens in both portrait and landscape orientations:
 
 |                  | Portrait                                                               | Landscape                                                               |
 |------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| favorites screen | <img src="assets/PORTRAIT/favorites_screen_portrait.png" height="300"> | <img src="assets/LANDSCAPE/favorites_screen_landscape.png" width="300"> |                                                                       |
-| check screen     | <img src="assets/PORTRAIT/check_screen_portrait.png" height="300">     | <img src="assets/LANDSCAPE/check_screen_landscape.png" width="300">     |
-|                  |                                                                        | <img src="assets/LANDSCAPE/solo_image_landscape.png" width="300">       |
+| favorites screen | <img src="assets/PORTRAIT/favorites_screen_portrait.PNG" height="300"> | <img src="assets/LANDSCAPE/favorites_screen_landscape.PNG" width="300"> |                                                                       |
+| check screen     | <img src="assets/PORTRAIT/check_screen_portrait.PNG" height="300">     | <img src="assets/LANDSCAPE/check_screen_landscape.PNG" width="300">     |
+|                  |                                                                        | <img src="assets/LANDSCAPE/solo_image_landscape.PNG" width="300">       |
 
 
 ## Built With
