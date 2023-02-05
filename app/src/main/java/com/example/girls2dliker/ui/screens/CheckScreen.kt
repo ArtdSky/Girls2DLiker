@@ -37,26 +37,7 @@ fun CheckScreen(
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Check",
-                        color = MaterialTheme.colors.onPrimary
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = {
-                        coroutineScope.launch { scaffoldState.drawerState.open() }
-                    }) {
-                        Icon(
-                            imageVector = Icons.Filled.List,
-                            contentDescription = "Drawer Button"
-                        )
-                    }
-                }
-            )
-        },
+
         scaffoldState = scaffoldState,
         drawerContent = {
             AppDrawer(

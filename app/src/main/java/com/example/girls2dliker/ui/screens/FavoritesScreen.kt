@@ -31,26 +31,7 @@ fun FavoritesScreen(
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Favorites",
-                        color = MaterialTheme.colors.onPrimary
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = {
-                        coroutineScope.launch { scaffoldState.drawerState.open() }
-                    }) {
-                        Icon(
-                            imageVector = Icons.Filled.List,
-                            contentDescription = "Drawer Button"
-                        )
-                    }
-                }
-            )
-        },
+
         scaffoldState = scaffoldState,
         drawerContent = {
             AppDrawer(
