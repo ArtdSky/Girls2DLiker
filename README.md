@@ -2,7 +2,7 @@
 
 ## What it does
 
-The app shows a list of Anime waifu pictures. The data is received from [Marvel API](https://www.waifu.im/docs/).
+The app shows a list of Anime waifu pictures. The data is received from [Waifu API](https://www.waifu.im/docs/).
 
 The check screen has a carousel of the pictures. You can add picture to favorites. Refresh the list with a pull-up gesture. Swipe left opens the menu
 
